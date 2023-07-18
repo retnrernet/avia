@@ -26,7 +26,7 @@ while True:
   time.sleep(1)
   try:wd.find_element(By.XPATH, '//*[@class="trip-duration__input-wrapper --departure"]').click()
   except:continue
-  print(text)
+  print("https://aviasales.ru?params="+text+"1")
   time.sleep(1)
   #calendar-day__content
   low=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
