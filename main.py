@@ -26,9 +26,10 @@ while True:
   time.sleep(1)
   try:wd.find_element(By.XPATH, '//*[@class="trip-duration__input-wrapper --departure"]').click()
   except:continue
-  print("https://aviasales.ru?params="+text+"1")
+  try:title=wd.find_element(By.XPATH, '//*[@class="s__KVUgoBX9LWUlie9mLG9M"]')
+  except:pass;print("https://aviasales.ru?params="+text+"1")
+  else:print("https://aviasales.ru?params="+text+"1 "+title.text.replace("Короче, ","").replace("Местные рекомендуют",""))
   time.sleep(1)
-  #calendar-day__content
   low=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
   for x in low:
     if int(x.text[:-6])<=price:print(x.text[:-6])
