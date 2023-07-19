@@ -19,7 +19,7 @@ start=0;end=0
 while True:
   if end==2:end=0;start=start+1
   text=citiesfrom[end]+citiesout[start];end=end+1
-  if text=="MOWEVN" or text=="MOWTBS" or text=="MOWAER" or text=="MOWKZN" or text=="MOWAYT" or text=="MOWIST" or text=="MOWDLM" or text=="MOWGZP" or text=="MOWADB" or text=="MOWBJV" or text=="MOWKGD":continue
+  if text=="MOWEVN" or text=="MOWTBS" or text=="MOWAER" or text=="MOWKZN" or text=="MOWAYT" or text=="MOWIST" or text=="MOWDLM" or text=="MOWGZP"  or text=="MOWADB" or text=="MOWBJV" or text=="MOWKGD" or text=="MOWSHJ" or text=="MOWDXB" or text=="MOWAUH" or text=="MOWSKD" or text=="MOWTAS" or text=="MOWDYU":continue
   if text.endswith("EVN") or text.endswith("TBS") or text.endswith("AER") or text.endswith("KZN"):price=7
   if text.endswith("CCS") or text.endswith("VRA") or text.endswith("EZE") or text.endswith("HAV") or text.endswith("GIG") or text.endswith("SEZ") or text.endswith("MLE") or text.endswith("LIM") or text.endswith("MEX") or text.endswith("PMV"):price=50
   if text.endswith("DXB") or text.endswith("SHJ") or text.endswith("AUH") or text.endswith("HRG") or text.endswith("SSH") or text.endswith("CAI") or text.endswith("AQJ") or text.endswith("AMM") or text.endswith("AYT") or text.endswith("IST") or text.endswith("DLM") or text.endswith("GZP") or text.endswith("ADB") or text.endswith("IKA") or text.endswith("SKD") or text.endswith("TAS"):price=11
