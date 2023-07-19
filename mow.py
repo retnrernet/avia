@@ -13,6 +13,7 @@ chrome_options.headless = True
 wd = webdriver.Chrome(options=chrome_options)
 citiesout=["EVN", "TBS", "IKA", "CAI","SSH","HRG","SKD","TAS","TNR","DYU","DAR","TGD","JNB","DEL","BOM","VTE","DXB","SHJ","AUH","CGP","PBH","EZE","CCS","VRA","HAV","GIG", "BKK", "CXR", "SGN", "SEZ", "MLE", "DLM", "AYT", "GZP", "IST", "ADB","HKG","AQJ","AMM","CMN","RAK","CGK","DPS","KUL","RGN","PMV", "LIM","CMB","MNL","HAK", "XIY", "PEK","PVG","CAN","ICN", "AER", "KGD", "KZN"]
 start=0
+f=open("mow.txt","w")
 while True:
   text="LED"+citiesout[start];start=start+1
   if text.endswith("EVN") or text.endswith("TBS") or text.endswith("AER"):price=7
@@ -25,12 +26,12 @@ while True:
   try:wd.find_element(By.XPATH, '//*[@class="trip-duration__input-wrapper --departure"]').click()
   except:continue
   try:title=wd.find_element(By.XPATH, '//*[@class="s__KVUgoBX9LWUlie9mLG9M"]')
-  except:pass;print("https://aviasales.ru?params="+text+"1")
-  else:print("https://aviasales.ru?params="+text+"1 "+title.text.replace("Короче, ","").replace("Местные рекомендуют",""))
+  except:pass;f.write("https://aviasales.ru?params="+text+"1"+"\n")#print("https://aviasales.ru?params="+text+"1")
+  else:f.write("https://aviasales.ru?params="+text+"1 "+title.text.replace("Короче, ","").replace("Местные рекомендуют","")+"\n")
   time.sleep(1)
   low=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
   for x in low:
-    if int(x.text[:-6])<=price:print(x.text[:-6])
+    if int(x.text[:-6])<=price:f.write(x.text[:-6]+"\n")
   try:wd.find_element(By.XPATH, '//*[@class="calendar-navbar__button --next"]').click()
   except:continue
   time.sleep(1)
@@ -38,4 +39,4 @@ while True:
   time.sleep(1)
   low2=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
   for i in low2:
-    if int(i.text[:-6])<=price:print(i.text[:-6])
+    if int(i.text[:-6])<=price:f.write(i.text[:-6]+"\n")
