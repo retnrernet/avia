@@ -11,12 +11,10 @@ chrome_options.add_argument('--blink-settings=imagesEnabled=false')
 chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")
 chrome_options.headless = True
 wd = webdriver.Chrome(options=chrome_options)
-citiesfrom=["MOW","LED"]
 citiesout=["EVN", "TBS", "IKA", "CAI","SSH","HRG","SKD","TAS","TNR","DYU","DAR","TGD","JNB","DEL","BOM","VTE","DXB","SHJ","AUH","CGP","PBH","EZE","CCS","VRA","HAV","GIG", "BKK", "CXR", "SGN", "SEZ", "MLE", "DLM", "AYT", "GZP", "IST", "ADB","HKG","AQJ","AMM","CMN","RAK","CGK","DPS","KUL","RGN","PMV", "LIM","CMB","MNL","HAK", "XIY", "PEK","PVG","CAN","ICN", "AER", "KGD", "KZN"]
-start=0;end=0
+start=0
 while True:
-  if end==2:end=0;start=start+1
-  text=citiesfrom[end]+citiesout[start];end=end+1
+  text="LED"+citiesout[start];start=start+1
   if text.endswith("EVN") or text.endswith("TBS") or text.endswith("AER") or text.endswith("KZN"):price=7
   if text.endswith("CCS") or text.endswith("VRA") or text.endswith("EZE") or text.endswith("HAV") or text.endswith("GIG") or text.endswith("SEZ") or text.endswith("MLE") or text.endswith("LIM") or text.endswith("MEX") or text.endswith("PMV"):price=50
   if text.endswith("DXB") or text.endswith("SHJ") or text.endswith("AUH") or text.endswith("HRG") or text.endswith("SSH") or text.endswith("CAI") or text.endswith("AQJ") or text.endswith("AMM") or text.endswith("AYT") or text.endswith("IST") or text.endswith("DLM") or text.endswith("GZP") or text.endswith("ADB") or text.endswith("IKA") or text.endswith("SKD") or text.endswith("TAS"):price=11
