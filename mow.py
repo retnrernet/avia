@@ -26,7 +26,7 @@ while True:
   except:continue
   try:title=wd.find_element(By.XPATH, '//*[@class="s__KVUgoBX9LWUlie9mLG9M"]')
   except:pass;print("https://aviasales.ru?params="+text+"1")#print("https://aviasales.ru?params="+text+"1")
-  else:f.write("https://aviasales.ru?params="+text+"1 "+title.text.replace("Короче, ","").replace("Местные рекомендуют","")+"\n")
+  else:print("https://aviasales.ru?params="+text+"1 "+title.text.replace("Короче, ","").replace("Местные рекомендуют",""))
   time.sleep(1)
   low=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
   for x in low:
