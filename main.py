@@ -15,10 +15,10 @@ citiesout=["EVN", "TBS", "IKA", "CAI","SSH","HRG","SKD","TAS","TNR","DYU","DAR",
 start=0
 while True:
   text="LED"+citiesout[start];start=start+1
-  if text.endswith("EVN") or text.endswith("TBS") or text.endswith("AER") or text.endswith("KZN"):price=7
+  if text.endswith("EVN") or text.endswith("TBS") or text.endswith("AER"):price=7
   if text.endswith("CCS") or text.endswith("VRA") or text.endswith("EZE") or text.endswith("HAV") or text.endswith("GIG") or text.endswith("SEZ") or text.endswith("MLE") or text.endswith("LIM") or text.endswith("MEX") or text.endswith("PMV"):price=50
   if text.endswith("DXB") or text.endswith("SHJ") or text.endswith("AUH") or text.endswith("HRG") or text.endswith("SSH") or text.endswith("CAI") or text.endswith("AQJ") or text.endswith("AMM") or text.endswith("AYT") or text.endswith("IST") or text.endswith("DLM") or text.endswith("GZP") or text.endswith("ADB") or text.endswith("IKA") or text.endswith("SKD") or text.endswith("TAS"):price=11
-  if text.endswith("KGD"):price=3
+  if text.endswith("KGD") or text.endswith("KZN"):price=3
   else:price=20
   wd.get("https://www.aviasales.ru/?params="+text+"1")
   time.sleep(1)
