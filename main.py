@@ -1,4 +1,4 @@
-#@title __⬅️ спбмск__
+"""#@title __⬅️ спбмск__
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time,ftplib,glob,os,threading
@@ -55,8 +55,8 @@ while True:
     try:
       if int(out1[:-6])<=price:print(out[0]+": "+out1[:-6])
     except:pass
-    #if int(x.text[:-6])<=price:print(x.text[:-6])
-"""#@title __⬅️ спбмск__
+    #if int(x.text[:-6])<=price:print(x.text[:-6])"""
+#@title __⬅️ спбмск__
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time,ftplib,glob,os,threading
@@ -101,4 +101,4 @@ while True:
   time.sleep(2)
   low2=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
   for i in low2:
-    if int(i.text[:-6])<=price:print(i.text[:-6])"""
+    if int(i.text[:-6])<=price:print(i.text[:-6])
