@@ -29,7 +29,6 @@ while True:
   time.sleep(1)
   try:title=wd.find_element(By.XPATH, '//*[@class="s__KVUgoBX9LWUlie9mLG9M"]')
   except:pass;print("https://aviasales.ru?params="+text+"1")
-  else:print("https://aviasales.ru?params="+text+"1 "+title.text.replace("Короче, ","").replace("Местные рекомендуют",""))
   lol=wd.find_elements(By.XPATH, '//*[@class="s__UYk1V_405aeKILr1m0b1"]')
   try:lol[1].click()
   except:
@@ -87,9 +86,8 @@ while True:
   time.sleep(1)
   try:wd.find_element(By.XPATH, '//*[@class="trip-duration__input-wrapper --departure"]').click()
   except:continue
-  try:title=wd.find_element(By.XPATH, '//*[@class="s__KVUgoBX9LWUlie9mLG9M"]')
+  try:title=wd.find_element(By.XPATH, '//*[@class="s__KVUgoBX9LWUlie9mLG9M"]');print(title.text.replace("Короче, ","").replace("Местные рекомендуют","")+" "+"https://aviasales.ru?params="+text+"1")
   except:pass;print("https://aviasales.ru?params="+text+"1")
-  else:print("https://aviasales.ru?params="+text+"1 "+title.text.replace("Короче, ","").replace("Местные рекомендуют",""))
   time.sleep(2)
   low=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
   for x in low:
