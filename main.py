@@ -58,6 +58,8 @@ while True:
 #@title __⬅️ спбмск__
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
 import time,ftplib,glob,os,threading
 from PIL import Image
 chrome_options = webdriver.ChromeOptions()
@@ -69,13 +71,11 @@ chrome_options.add_argument('--blink-settings=imagesEnabled=false')
 chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")
 chrome_options.headless = True
 wd = webdriver.Chrome(options=chrome_options)
-citiesfrom=["MOW","LED"]
 #citiesout=["EVN", "TBS", "IKA", "CAI","SSH","HRG","BJV","SKD","TAS","TNR","DYU","DAR","TGD","JNB","DEL","BOM","VTE","DXB","SHJ","AUH","CGP","PBH","EZE","CCS","VRA","HAV","GIG", "BKK", "CXR", "SGN", "SEZ", "MLE", "DLM", "AYT", "GZP", "IST", "ADB","HKG","AQJ","AMM","CMN","RAK","CGK","DPS","KUL","RGN","PMV", "LIM","CMB","MNL","HAK", "XIY", "PEK","PVG","CAN","ICN", "AER", "KGD", "KZN"]
 citiesout=["CAI","SSH","HRG","DEL","BOM","AQJ","AMM","CMN","RAK","SKD","TAS","DYU","DLM", "AYT","GZP","IST","ADB","BJV","DXB","SHJ","AUH","HKG","CGK","DPS","KUL","VTE","RGN","MNL","HAK","XIY","CAN","PEK","SGN","CXR","PVG","ICN","CMB","BKK","PBH","UTP","PMV","CGP","TNR","DAR","JNB","LIM","EZE","CCS","VRA","HAV","GIG","TGD","EVN", "TBS", "IKA","AER", "KGD", "KZN","MLE","SEZ"]
-start=0;end=0
+start=0
 while True:
-  if end==2:end=0;start=start+1
-  text=citiesfrom[end]+citiesout[start];end=end+1
+  text="MOW"+citiesout[start];start=start+1
   if text=="MOWEVN" or text=="MOWTBS" or text=="MOWAER" or text=="MOWKZN" or text=="MOWAYT" or text=="MOWIST" or text=="MOWDLM" or text=="MOWGZP"  or text=="MOWADB" or text=="MOWBJV" or text=="MOWKGD" or text=="MOWSHJ" or text=="MOWDXB" or text=="MOWAUH" or text=="MOWSKD" or text=="MOWTAS" or text=="MOWDYU" or text=="MOWTGD" or text=="MOWIKA" or text=="LEDGIG" or text=="LEDHAV" or text=="LEDVRA" or text=="LEDCCS" or text=="LEDEZE" or text=="LEDLIM":continue
   if text.endswith("EVN") or text.endswith("TBS") or text.endswith("AER") or text.endswith("KZN"):price=7
   if text.endswith("CCS") or text.endswith("VRA") or text.endswith("EZE") or text.endswith("HAV") or text.endswith("GIG") or text.endswith("SEZ") or text.endswith("MLE") or text.endswith("LIM") or text.endswith("MEX") or text.endswith("PMV"):price=50
@@ -91,7 +91,7 @@ while True:
   time.sleep(2)
   low=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
   for x in low:
-    if int(x.text[:-6])<=price:print(x.text[:-6])
+    if int(x.text[:-6])<=price:print(x.text[:-6]);flagx=1
   try:wd.find_element(By.XPATH, '//*[@class="calendar-navbar__button --next"]').click()
   except:continue
   time.sleep(2)
@@ -99,4 +99,56 @@ while True:
   time.sleep(2)
   low2=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
   for i in low2:
-    if int(i.text[:-6])<=price:print(i.text[:-6])
+    if int(i.text[:-6])<=price:print(i.text[:-6]);flagi=1
+  try:
+    if flagx==1 or flagi==1:
+      wd.find_element(By.XPATH, '//*[@class="swap-places"]').click();time.sleep(2)
+      try:wd.find_element(By.XPATH, '//*[@class="trip-duration__input-wrapper --departure"]').click()
+      except:continue
+      time.sleep(2);low=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
+      for x in low:
+        if int(x.text[:-6])<=price:print(x.text[:-6]+" обратно")
+      try:wd.find_element(By.XPATH, '//*[@class="calendar-navbar__button --next"]').click()
+      except:continue
+      time.sleep(2);wd.find_element(By.XPATH, '//*[@class="calendar-navbar__button --next"]').click();time.sleep(2);low2=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
+      for i in low2:
+        if int(i.text[:-6])<=price:print(i.text[:-6]+" обратно")
+      wd.find_element(By.XPATH, '//*[@class="swap-places"]').click();time.sleep(2)
+  except:pass
+  flagx=0;flagi=0
+  print("https://aviasales.ru?params="+"LED"+text[3:]+"1")
+  #wd.find_element(By.XPATH, '//*[@class="swap-places"]').click();time.sleep(2)
+  orig=wd.find_element(By.XPATH, '//*[@id="origin"]')
+  try:orig.clear()
+  except:pass
+  orig.send_keys(Keys.CONTROL + 'a');time.sleep(1);orig.send_keys(Keys.BACKSPACE);time.sleep(1);orig.send_keys("Пулково");time.sleep(1);orig.send_keys(Keys.ENTER);orig.click()
+  time.sleep(2)
+  try:wd.find_element(By.XPATH, '//*[@class="trip-duration__input-wrapper --departure"]').click()
+  except:continue
+  time.sleep(2)
+  low=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
+  for x in low:
+    if int(x.text[:-6])<=price:print(x.text[:-6]);flagx=1
+  try:wd.find_element(By.XPATH, '//*[@class="calendar-navbar__button --next"]').click()
+  except:continue
+  time.sleep(2)
+  wd.find_element(By.XPATH, '//*[@class="calendar-navbar__button --next"]').click()
+  time.sleep(2)
+  low2=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
+  for i in low2:
+    if int(i.text[:-6])<=price:print(i.text[:-6]);flagi=1
+  try:
+    if flagx==1 or flagi==1:
+      wd.find_element(By.XPATH, '//*[@class="swap-places"]').click();time.sleep(2)
+      try:wd.find_element(By.XPATH, '//*[@class="trip-duration__input-wrapper --departure"]').click()
+      except:continue
+      time.sleep(2);low=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
+      for x in low:
+        if int(x.text[:-6])<=price:print(x.text[:-6]+" обратно")
+      try:wd.find_element(By.XPATH, '//*[@class="calendar-navbar__button --next"]').click()
+      except:continue
+      time.sleep(2);wd.find_element(By.XPATH, '//*[@class="calendar-navbar__button --next"]').click();time.sleep(2);low2=wd.find_elements(By.XPATH, '//*[@class="h__wRhMOEwg2Ub7G1CotYcY trip_dates_price --low"]')
+      for i in low2:
+        if int(i.text[:-6])<=price:print(i.text[:-6]+" обратно")
+  except:pass
+  flagx=0;flagi=0
