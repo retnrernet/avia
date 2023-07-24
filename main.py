@@ -72,7 +72,7 @@ chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64
 chrome_options.headless = True
 wd = webdriver.Chrome(options=chrome_options)
 #citiesout=["EVN", "TBS", "IKA", "CAI","SSH","HRG","BJV","SKD","TAS","TNR","DYU","DAR","TGD","JNB","DEL","BOM","VTE","DXB","SHJ","AUH","CGP","PBH","EZE","CCS","VRA","HAV","GIG", "BKK", "CXR", "SGN", "SEZ", "MLE", "DLM", "AYT", "GZP", "IST", "ADB","HKG","AQJ","AMM","CMN","RAK","CGK","DPS","KUL","RGN","PMV", "LIM","CMB","MNL","HAK", "XIY", "PEK","PVG","CAN","ICN", "AER", "KGD", "KZN"]
-citiesout=["CAI","SSH","HRG","DEL","BOM","AQJ","AMM","CMN","RAK","SKD","TAS","DYU","DLM", "AYT","GZP","IST","ADB","BJV","DXB","SHJ","AUH","HKG","CGK","DPS","KUL","VTE","RGN","MNL","HAK","XIY","CAN","PEK","SGN","CXR","PVG","ICN","CMB","BKK","PBH","UTP","PMV","CGP","TNR","DAR","JNB","LIM","EZE","CCS","VRA","HAV","GIG","TGD","EVN", "TBS", "IKA","AER", "KGD", "KZN","MLE","SEZ"]
+citiesout=["CAI","SSH","HRG","DEL","BOM","AQJ","AMM","CMN","RAK","SKD","TAS","DYU","DLM", "AYT","GZP","IST","ADB","BJV","DXB","SHJ","AUH","HKG","CGK","DPS","KUL","VTE","RGN","MNL","HAK","XIY","CAN","PEK","SGN","CXR","PVG","ICN","CMB","BKK","PBH","UTP","PMV","CGP","TNR","DAR","JNB","LIM","EZE","CCS","VRA","HAV","GIG","TGD","SJJ","EVN", "TBS", "IKA","AER", "KGD", "KZN","MLE","SEZ"]
 start=0
 wd.get("https://www.bgoperator.ru/price.shtml?flt=100410000047&flt2=100510001075")
 tour=wd.find_elements(By.XPATH, '//*[@class="price-tour"]')
