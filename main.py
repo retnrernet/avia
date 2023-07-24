@@ -16,6 +16,20 @@ citiesfrom=["MOW","LED"]
 #citiesout=["EVN", "TBS", "IKA", "CAI","SSH","HRG","BJV","SKD","TAS","TNR","DYU","DAR","TGD","JNB","DEL","BOM","VTE","DXB","SHJ","AUH","CGP","PBH","EZE","CCS","VRA","HAV","GIG", "BKK", "CXR", "SGN", "SEZ", "MLE", "DLM", "AYT", "GZP", "IST", "ADB","HKG","AQJ","AMM","CMN","RAK","CGK","DPS","KUL","RGN","PMV", "LIM","CMB","MNL","HAK", "XIY", "PEK","PVG","CAN","ICN", "AER", "KGD", "KZN"]
 citiesout=["CAI","SSH","HRG","DEL","BOM","AQJ","AMM","CMN","RAK","SKD","TAS","DYU","DLM", "AYT","GZP","IST","ADB","BJV","DXB","SHJ","AUH","HKG","CGK","DPS","KUL","VTE","RGN","MNL","HAK","XIY","CAN","PEK","SGN","CXR","PVG","ICN","CMB","BKK","PBH","UTP","PMV","CGP","TNR","DAR","JNB","LIM","EZE","CCS","VRA","HAV","GIG","TGD","EVN", "TBS", "IKA","AER", "KGD", "KZN","MLE","SEZ"]
 start=0;end=0
+wd.get("https://www.bgoperator.ru/price.shtml?flt=100410000047&flt2=100510001075")
+tour=wd.find_elements(By.XPATH, '//*[@class="price-tour"]')
+print("тур египет")
+for x in tour:
+  try:
+    if int(x.text.replace("Цены от ","").replace(" Руб.",""))<=30000:print(x.text.replace("Цены от ","").replace(" Руб.",""))
+  except:pass
+wd.get("https://www.bgoperator.ru/price.shtml?flt=100411293179&flt2=100510001075")
+tour=wd.find_elements(By.XPATH, '//*[@class="price-tour"]')
+print("тур турция")
+for x in tour:
+  try:
+    if int(x.text.replace("Цены от ","").replace(" Руб.",""))<=25000:print(x.text.replace("Цены от ","").replace(" Руб.",""))
+  except:pass
 while True:
   if end==2:end=0;start=start+1
   text=citiesfrom[end]+citiesout[start];end=end+1
