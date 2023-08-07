@@ -17,7 +17,6 @@ def find():
   global flagx
   try:wd.find_element(By.XPATH, '//*[@class="s__Z1CqtZzeLkO0c8DmNHV7 s__u5XZeMb_TRUN_16zDQhj s__syxx275e9ITZszaXJkqO s__hyD1O3C333EEuxQT2YBC"]').click();ts()
   except:pass
-  wd.save_screenshot(text+".png")
   try:wd.find_element(By.XPATH, '//*[@class="s__SaW6MMUWSsjkx9bhk_9l s__d2cfCPmDC3oYaJHwbWl8 s__U9RslCkxhGwIguIVMvgP"]').click();ts()
   except:wd.find_element(By.XPATH, '//*[@class="s__SaW6MMUWSsjkx9bhk_9l s__d2cfCPmDC3oYaJHwbWl8 s__U9RslCkxhGwIguIVMvgP s__BJEWay5f4gZGYsMGRckA"]').click();ts()
   low=wd.find_elements(By.XPATH, '//*[@class="s__wRhMOEwg2Ub7G1CotYcY"]')
@@ -39,7 +38,7 @@ while True:
   if text.endswith("KGD") or text.endswith("KZN") or text.endswith("AER"):price=3
   else:price=20
   try:wd.get("https://www.aviasales.ru/?params="+text+"1");ts();title();ts();find();ts();rev();flagx=0;flagi=0;print("https://aviasales.ru?params="+"LED"+text[3:]+"1");orig=wd.find_element(By.XPATH, '//*[@class="s__WHSr5kXNWCFqhAdQ4N48 s__QK7IEyjlBUan5ZeIZqy3 s__Zp6H0IkgbCliZJ23FmWT"]')
-  except:continue
+  except:break;print("капча.перезапусти код") 
   else:
     try:orig.clear()
     except:pass
